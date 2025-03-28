@@ -7,6 +7,16 @@
     " " : {
       "shouldTranslate" : false
     },
+    "Bracket" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кронштейн"
+          }
+        }
+      }
+    },
     "Calculate" : {
       "localizations" : {
         "ru" : {
@@ -17,12 +27,32 @@
         }
       }
     },
+    "Chase in a brick" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Штроба кирпича"
+          }
+        }
+      }
+    },
     "Chase in a tongue-and-groove panel" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Штроба пазогребневой плиты "
+          }
+        }
+      }
+    },
+    "Chase in concrete" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Штроба монолита"
           }
         }
       }

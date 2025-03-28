@@ -16,13 +16,7 @@ final class EstimateCellViewModel {
 
 	// MARK: - Internal Properties
 
-	var enteredData: String = "" {
-		didSet {
-			Task(priority: .userInitiated) {
-				await calculatePrice()
-			}
-		}
-	}
+	var enteredData: String = ""
 	var price: Double = 0.0
 	var pricePerUnit: Double
 
@@ -55,14 +49,28 @@ final class EstimateCellViewModel {
 		return formatter.string(from: unit)
 	}
 
-	private func calculatePrice() async {
+	func calculatePrice() async {
 		guard let enteredDataValue = Double(enteredData) else { return }
 		price = enteredDataValue * pricePerUnit
 
 		switch calculateCellType {
 		case .lengthLine: await calculateService.setLengthPrice(price)
 		case .chaseGrooveAndTonguePlate: await calculateService.setChaseGrooveAndTonguePlatePrice(price)
+		case .chaseInBrick: await calculateService.setChaseInBrickPrice(price)
+		case .chaseInConcrete: await calculateService.setChaseInConcrete(price)
 		case .additionalDepartures: await calculateService.setAdditionalDeparturesPrice(price)
+		}
+	}
+
+	/// Метод для ограничения ввода символов и точек с запятыми
+	/// - меняет запятую на точку
+	func validateInput(_ text: String) -> String {
+		let normalizedText = text.replacingOccurrences(of: ",", with: ".")
+		let regex = "^[0-9]{1,6}([.][0-9]{0,2})?$"
+		if normalizedText.range(of: regex, options: .regularExpression) != nil {
+			return normalizedText
+		} else {
+			return String(text.dropLast())
 		}
 	}
 }
@@ -73,6 +81,8 @@ extension EstimateCellViewModel {
 	enum CalculateCellType {
 		case lengthLine
 		case chaseGrooveAndTonguePlate
+		case chaseInBrick
+		case chaseInConcrete
 		case additionalDepartures
 	}
 }

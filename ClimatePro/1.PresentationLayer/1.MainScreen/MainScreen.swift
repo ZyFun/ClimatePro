@@ -13,6 +13,9 @@ struct MainScreen: View {
 	@State var viewModel: MainScreenViewModel
 	@State var lengthCellViewModel: EstimateCellViewModel
 	@State var chaseGrooveAndTonguePlateCellViewModel: EstimateCellViewModel
+	@State var chaseInBrick: EstimateCellViewModel
+	@State var chaseInConcrete: EstimateCellViewModel
+	@State var bracketSelectCellViewModel: EstimateToggleCellViewModel
 	@State var additionalDeparturesCellViewModel: EstimateCellViewModel
 
 	private let padding: CGFloat = 16
@@ -26,12 +29,16 @@ struct MainScreen: View {
 					VStack(alignment: .leading, spacing: padding) {
 						buildLineLengthCell()
 						buildChaseGrooveAndTonguePlateCell()
+						buildChaseInBrickCell()
+						buildChaseInConcreteCell()
+						buildBracketSelectCell()
 						buildAdditionalDeparturesCell()
 					}
 				}, header: {
 					Text("Main parameters")
 						.frame(maxWidth: .infinity, alignment: .leading)
 						.font(.title2)
+						.padding(.top, padding)
 				}
 			)
 			.padding(.horizontal, padding)
@@ -67,6 +74,33 @@ struct MainScreen: View {
 		)
 	}
 
+	private func buildChaseInBrickCell() -> some View {
+		EstimateCellView(
+			viewModel: chaseInBrick,
+			title: "Chase in a brick",
+			placeholder: "distance",
+			unit: .meters,
+			pricePer: "per 1 m"
+		)
+	}
+
+	private func buildChaseInConcreteCell() -> some View {
+		EstimateCellView(
+			viewModel: chaseInConcrete,
+			title: "Chase in concrete",
+			placeholder: "distance",
+			unit: .meters,
+			pricePer: "per 1 m"
+		)
+	}
+
+	private func buildBracketSelectCell() -> some View {
+		EstimateToggleCellView(
+			viewModel: bracketSelectCellViewModel,
+			text: "Bracket"
+		)
+	}
+
 	private func buildAdditionalDeparturesCell() -> some View {
 		EstimateCellView(
 			viewModel: additionalDeparturesCellViewModel,
@@ -77,6 +111,7 @@ struct MainScreen: View {
 		)
 	}
 
+	@ViewBuilder
 	private func buildTotalPrice() -> some View {
 		HStack {
 			Text("Total price:")
@@ -89,6 +124,7 @@ struct MainScreen: View {
 				}
 			}.buttonStyle(.borderedProminent)
 		}
+		Spacer(minLength: 30)
 	}
 }
 

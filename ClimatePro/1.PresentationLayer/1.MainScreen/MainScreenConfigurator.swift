@@ -34,6 +34,20 @@ final class MainScreenConfigurator {
 			pricePerUnit: 950, // TODO: () Вынести цену в хранилище coreData
 			cellType: .chaseGrooveAndTonguePlate
 		)
+		let chaseInBrick = EstimateCellViewModel(
+			calculateService: calculateService,
+			pricePerUnit: 1400, // TODO: () Вынести цену в хранилище coreData
+			cellType: .chaseInBrick
+		)
+		let chaseInConcrete = EstimateCellViewModel(
+			calculateService: calculateService,
+			pricePerUnit: 1800, // TODO: () Вынести цену в хранилище coreData
+			cellType: .chaseInConcrete
+		)
+		let bracketSelectCellViewModel = EstimateToggleCellViewModel(
+			calculateService: calculateService,
+			pricePerUnit: 1000 // TODO: () Вынести цену в хранилище coreData
+		)
 		let additionalDeparturesCellModel = EstimateCellViewModel(
 			calculateService: calculateService,
 			pricePerUnit: 1000, // TODO: () Вынести цену в хранилище coreData
@@ -43,6 +57,9 @@ final class MainScreenConfigurator {
 			viewModel: model,
 			lengthCellViewModel: lengthCellViewModel,
 			chaseGrooveAndTonguePlateCellViewModel: chaseGrooveAndTonguePlateCellViewModel,
+			chaseInBrick: chaseInBrick,
+			chaseInConcrete: chaseInConcrete,
+			bracketSelectCellViewModel: bracketSelectCellViewModel,
 			additionalDeparturesCellViewModel: additionalDeparturesCellModel
 		)
 		return view
