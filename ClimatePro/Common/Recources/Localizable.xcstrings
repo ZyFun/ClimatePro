@@ -4,18 +4,7 @@
     "" : {
       "shouldTranslate" : false
     },
-    "1" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "1"
-          }
-        }
-      },
-      "shouldTranslate" : false
-    },
-    "3" : {
+    " " : {
       "shouldTranslate" : false
     },
     "Calculate" : {
@@ -28,12 +17,42 @@
         }
       }
     },
+    "Chase in a tongue-and-groove panel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Штроба пазогребневой плиты "
+          }
+        }
+      }
+    },
+    "count" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Количество"
+          }
+        }
+      }
+    },
     "Count of additional departures" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дополнительный выезд"
+          }
+        }
+      }
+    },
+    "distance" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расстояние"
           }
         }
       }
@@ -54,16 +73,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Длинна трассы"
-          }
-        }
-      }
-    },
-    "m" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "м"
           }
         }
       }

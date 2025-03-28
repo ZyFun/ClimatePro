@@ -1,5 +1,5 @@
 //
-//  SmetaCellView.swift
+//  EstimateCellView.swift
 //  ClimatePro
 //
 //  Created by Дмитрий Данилин on 28.03.2025.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SmetaCellView: View {
+struct EstimateCellView: View {
 	// MARK: - Property wrappers
 
-	@Bindable var viewModel: SmetaCellViewModel
+	@Bindable var viewModel: EstimateCellViewModel
 
 	let title: LocalizedStringKey
 	let placeholder: LocalizedStringKey
-	let unitMeasurement: LocalizedStringKey
+	let unit: UnitLength?
 	let pricePer: LocalizedStringKey
 
 	// MARK: - Body
@@ -27,23 +27,22 @@ struct SmetaCellView: View {
 
 	private func buildCell() -> some View {
 		VStack(alignment: .leading) {
-			HStack {
-				Text(title)
-					.multilineTextAlignment(.leading)
-				Text(unitMeasurement)
+			HStack(alignment: .lastTextBaseline) {
+				Text(title) +
+				Text(" " + viewModel.localizedUnitSymbol(for: unit))
 					.foregroundColor(.secondary)
-
 				Spacer()
 				TextField(placeholder, text: $viewModel.enteredData)
 					.textFieldStyle(.roundedBorder)
-					.frame(maxWidth: 100)
+					.frame(maxWidth: 110)
 			}
 
-			HStack {
-				Text("Price")
-					.multilineTextAlignment(.leading)
+			HStack(alignment: .lastTextBaseline) {
+				Text("Price") +
+				Text(" ") +
 				Text(pricePer)
-					.foregroundColor(.secondary)
+					.foregroundColor(.secondary) +
+				Text(" ") +
 				Text(String(format: "%.2f", viewModel.pricePerUnit))
 					.foregroundColor(.secondary)
 
@@ -52,7 +51,7 @@ struct SmetaCellView: View {
 					viewModel.price,
 					format: .currency(code: viewModel.currency.code)
 				)
-				.frame(maxWidth: 100, alignment: .leading)
+				.frame(maxWidth: 110, alignment: .leading)
 			}
 		}
 		.padding()
@@ -68,11 +67,15 @@ struct SmetaCellView: View {
 // MARK: - Preview
 
 #Preview {
-	SmetaCellView(
-		viewModel: .init(pricePerUnit: 1000),
+	EstimateCellView(
+		viewModel: .init(
+			calculateService: CalculateService(),
+			pricePerUnit: 1000,
+			cellType: .lengthLine
+		),
 		title: "Length of the refrigerant line",
-		placeholder: "m",
-		unitMeasurement: "m",
+		placeholder: "distance",
+		unit: .meters,
 		pricePer: "per 1 m"
 	)
 }

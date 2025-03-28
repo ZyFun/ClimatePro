@@ -11,7 +11,12 @@ import SwiftUI
 struct ClimateProApp: App {
 	var body: some Scene {
 		WindowGroup {
-			TabBarConfigurator().config()
+			#if os(macOS)
+				TabBarConfigurator().config()
+					.frame(minWidth: 550, minHeight: 400)
+			#else
+				TabBarConfigurator().config()
+			#endif
 		}
 	}
 }

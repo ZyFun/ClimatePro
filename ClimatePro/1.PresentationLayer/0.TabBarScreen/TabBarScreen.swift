@@ -29,7 +29,7 @@ struct TabBarScreen: View {
 	// MARK: - View Builder Methods
 
 	private func buildMainScreen() -> some View {
-		MainScreenConfigurator().config()
+		PresentationAssembly().mainScreen.config()
 			.tabItem {
 				Image(systemName: "doc.text")
 				Text("Estimate")
