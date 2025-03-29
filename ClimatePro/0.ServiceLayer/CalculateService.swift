@@ -22,6 +22,10 @@ protocol ICalculateService: Sendable {
 	/// - Parameter price: цена за штробу
 	func setChaseInConcrete(_ price: Double) async
 
+	/// Метод для установки цены за монтаж и пусконаладку
+	/// - Parameter price: цена за монтаж и пуско-наладку
+	func setInstallationAndStartupPrice(_ price: Double) async
+
 	/// Метод для установки цены за кронштейн
 	/// - Parameter price: цена за кронштейн
 	func setBracketPrice(_ price: Double) async
@@ -41,6 +45,7 @@ actor CalculateService: ICalculateService {
 	private var chaseInBrickPrice: Double = 0
 	private var chaseInConcrete: Double = 0
 	private var additionalDeparturesPrice: Double = 0
+	private var installationAndStartupPrice: Double = 0
 	private var bracketPrice: Double = 0
 
 	func setLengthPrice(_ price: Double) async {
@@ -59,6 +64,10 @@ actor CalculateService: ICalculateService {
 		self.chaseInConcrete = price
 	}
 
+	func setInstallationAndStartupPrice(_ price: Double) async {
+		self.installationAndStartupPrice = price
+	}
+
 	func setBracketPrice(_ price: Double) async {
 		self.bracketPrice = price
 	}
@@ -72,6 +81,7 @@ actor CalculateService: ICalculateService {
 		+ chaseGrooveAndTonguePlatePrice
 		+ chaseInBrickPrice
 		+ chaseInConcrete
+		+ installationAndStartupPrice
 		+ bracketPrice
 		+ additionalDeparturesPrice
 	}

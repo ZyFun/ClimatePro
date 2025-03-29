@@ -97,6 +97,16 @@
         }
       }
     },
+    "Installation and startup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Монтаж и пусконаладка"
+          }
+        }
+      }
+    },
     "Length of the refrigerant line" : {
       "localizations" : {
         "ru" : {
@@ -113,6 +123,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Основные параметры"
+          }
+        }
+      }
+    },
+    "Not value" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значение не задано"
+          }
+        }
+      }
+    },
+    "Our" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наша"
           }
         }
       }
@@ -147,6 +177,26 @@
         }
       }
     },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Third Party" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чужая"
+          }
+        }
+      }
+    },
     "Total price:" : {
       "localizations" : {
         "ru" : {
@@ -156,6 +206,9 @@
           }
         }
       }
+    },
+    "Экран на стадии разработки" : {
+
     }
   },
   "version" : "1.0"

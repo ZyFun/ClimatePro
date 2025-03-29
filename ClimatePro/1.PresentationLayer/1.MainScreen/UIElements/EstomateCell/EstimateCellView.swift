@@ -33,16 +33,7 @@ struct EstimateCellView: View {
 					Text(" " + viewModel.localizedUnitSymbol(for: unit))
 						.foregroundColor(.secondary)
 					Spacer()
-					TextField(placeholder, text: $viewModel.enteredData)
-						.keyboardType(.decimalPad)
-						.textFieldStyle(.roundedBorder)
-						.frame(maxWidth: 110)
-						.onChange(of: viewModel.enteredData) { _, newValue in
-							viewModel.enteredData = viewModel.validateInput(newValue)
-							Task(priority: .userInitiated) {
-								await viewModel.calculatePrice()
-							}
-						}
+					buildTextField()
 				}
 
 				HStack(alignment: .lastTextBaseline) {
@@ -66,6 +57,31 @@ struct EstimateCellView: View {
 	}
 
 	// MARK: - Private methods
+
+	func buildTextField() -> some View {
+		#if os(macOS)
+		TextField(placeholder, text: $viewModel.enteredData)
+			.textFieldStyle(.roundedBorder)
+			.frame(maxWidth: 110)
+			.onChange(of: viewModel.enteredData) { _, newValue in
+				viewModel.enteredData = viewModel.validateInput(newValue)
+				Task(priority: .userInitiated) {
+					await viewModel.calculatePrice()
+				}
+			}
+		#else
+		TextField(placeholder, text: $viewModel.enteredData)
+			.keyboardType(.decimalPad)
+			.textFieldStyle(.roundedBorder)
+			.frame(maxWidth: 110)
+			.onChange(of: viewModel.enteredData) { _, newValue in
+				viewModel.enteredData = viewModel.validateInput(newValue)
+				Task(priority: .userInitiated) {
+					await viewModel.calculatePrice()
+				}
+			}
+		#endif
+	}
 
 }
 

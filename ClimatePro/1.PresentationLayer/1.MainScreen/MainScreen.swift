@@ -13,8 +13,9 @@ struct MainScreen: View {
 	@State var viewModel: MainScreenViewModel
 	@State var lengthCellViewModel: EstimateCellViewModel
 	@State var chaseGrooveAndTonguePlateCellViewModel: EstimateCellViewModel
-	@State var chaseInBrick: EstimateCellViewModel
-	@State var chaseInConcrete: EstimateCellViewModel
+	@State var chaseInBrickViewModel: EstimateCellViewModel
+	@State var chaseInConcreteViewModel: EstimateCellViewModel
+	@State var installationAndStartupViewModel: EstimatePickerCellViewModel
 	@State var bracketSelectCellViewModel: EstimateToggleCellViewModel
 	@State var additionalDeparturesCellViewModel: EstimateCellViewModel
 
@@ -31,6 +32,7 @@ struct MainScreen: View {
 						buildChaseGrooveAndTonguePlateCell()
 						buildChaseInBrickCell()
 						buildChaseInConcreteCell()
+						buildInstallationAndStartupCell()
 						buildBracketSelectCell()
 						buildAdditionalDeparturesCell()
 					}
@@ -76,7 +78,7 @@ struct MainScreen: View {
 
 	private func buildChaseInBrickCell() -> some View {
 		EstimateCellView(
-			viewModel: chaseInBrick,
+			viewModel: chaseInBrickViewModel,
 			title: "Chase in a brick",
 			placeholder: "distance",
 			unit: .meters,
@@ -86,11 +88,18 @@ struct MainScreen: View {
 
 	private func buildChaseInConcreteCell() -> some View {
 		EstimateCellView(
-			viewModel: chaseInConcrete,
+			viewModel: chaseInConcreteViewModel,
 			title: "Chase in concrete",
 			placeholder: "distance",
 			unit: .meters,
 			pricePer: "per 1 m"
+		)
+	}
+
+	private func buildInstallationAndStartupCell() -> some View {
+		EstimatePickerCellView(
+			viewModel: installationAndStartupViewModel,
+			text: "Installation and startup"
 		)
 	}
 

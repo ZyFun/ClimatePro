@@ -20,7 +20,7 @@ final class MainScreenConfigurator {
 
 	// MARK: - Internal methods
 
-	@MainActor func config() -> MainScreen {
+	@MainActor func config() -> MainScreen { // swiftlint:disable:this function_body_length
 		let model = MainScreenViewModel(
 			calculateService: calculateService
 		)
@@ -44,9 +44,19 @@ final class MainScreenConfigurator {
 			pricePerUnit: 1800, // TODO: () Вынести цену в хранилище coreData
 			cellType: .chaseInConcrete
 		)
+		let installationAndStartupViewModel = EstimatePickerCellViewModel(
+			calculateService: calculateService,
+			calculateCellType: .setupAndCommissioning,
+			options: [
+				.ourInstallation(price: 6700), // TODO: () Вынести цену в хранилище coreData
+				.thirdPartyInstallation(price: 8500) // TODO: () Вынести цену в хранилище coreData
+			]
+		)
+
 		let bracketSelectCellViewModel = EstimateToggleCellViewModel(
 			calculateService: calculateService,
-			pricePerUnit: 1000 // TODO: () Вынести цену в хранилище coreData
+			pricePerUnit: 1000, // TODO: () Вынести цену в хранилище coreData
+			cellType: .bracket
 		)
 		let additionalDeparturesCellModel = EstimateCellViewModel(
 			calculateService: calculateService,
@@ -59,6 +69,7 @@ final class MainScreenConfigurator {
 			chaseGrooveAndTonguePlateCellViewModel: chaseGrooveAndTonguePlateCellViewModel,
 			chaseInBrick: chaseInBrick,
 			chaseInConcrete: chaseInConcrete,
+			installationAndStartupViewModel: installationAndStartupViewModel,
 			bracketSelectCellViewModel: bracketSelectCellViewModel,
 			additionalDeparturesCellViewModel: additionalDeparturesCellModel
 		)

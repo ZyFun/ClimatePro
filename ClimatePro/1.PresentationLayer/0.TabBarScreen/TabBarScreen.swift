@@ -18,10 +18,12 @@ struct TabBarScreen: View {
 		if #available(iOS 18.0, *) {
 			TabView {
 				buildMainScreen()
+				buildSettingsScreen()
 			}.tabViewStyle(.sidebarAdaptable)
 		} else {
 			TabView {
 				buildMainScreen()
+				buildSettingsScreen()
 			}
 		}
 	}
@@ -33,6 +35,14 @@ struct TabBarScreen: View {
 			.tabItem {
 				Image(systemName: "doc.text")
 				Text("Estimate")
+			}
+	}
+
+	private func buildSettingsScreen() -> some View {
+		Text("Экран на стадии разработки")
+			.tabItem {
+				Image(systemName: "gear")
+				Text("Settings")
 			}
 	}
 

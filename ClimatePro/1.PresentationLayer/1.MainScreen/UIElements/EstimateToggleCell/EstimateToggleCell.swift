@@ -10,7 +10,7 @@ import SwiftUI
 struct EstimateToggleCellView: View {
 	// MARK: - Property wrappers
 
-	@State var viewModel: EstimateToggleCellViewModel
+	@Bindable var viewModel: EstimateToggleCellViewModel
 
 	let text: LocalizedStringKey
 
@@ -51,7 +51,8 @@ struct EstimateToggleCellView: View {
 	EstimateToggleCellView(
 		viewModel: .init(
 			calculateService: CalculateService(),
-			pricePerUnit: 1000
+			pricePerUnit: 1000,
+			cellType: .bracket
 		), text: "bracket"
 	)
 }

@@ -22,19 +22,31 @@ final class EstimateToggleCellViewModel {
 
 	// MARK: - Private properties
 
+	private let calculateCellType: CalculateCellType
+
 	// MARK: - Initializer
 
 	init (
 		calculateService: ICalculateService,
-		pricePerUnit: Double
+		pricePerUnit: Double,
+		cellType: CalculateCellType
 	) {
 		self.calculateService = calculateService
 		self.pricePerUnit = pricePerUnit
+		self.calculateCellType = cellType
 	}
 
 	// MARK: - Internal methods
 
 	func toggleDidChangeValue() async {
-		await calculateService.setBracketPrice(isSelected ? pricePerUnit : 0)
+		switch calculateCellType {
+		case .bracket: await calculateService.setBracketPrice(isSelected ? pricePerUnit : 0)
+		}
+	}
+}
+
+extension EstimateToggleCellViewModel {
+	enum CalculateCellType {
+		case bracket
 	}
 }
