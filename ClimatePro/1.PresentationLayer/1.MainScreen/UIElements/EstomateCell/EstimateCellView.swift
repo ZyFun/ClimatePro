@@ -51,7 +51,7 @@ struct EstimateCellView: View {
 						format: .currency(code: viewModel.currency.code)
 					)
 					.frame(maxWidth: 110, alignment: .leading)
-				}
+				}.dynamicTypeSize(.xSmall ... .xxLarge)
 			}
 		}
 	}
@@ -71,6 +71,7 @@ struct EstimateCellView: View {
 			}
 		#else
 		TextField(placeholder, text: $viewModel.enteredData)
+			.dynamicTypeSize(.xSmall ... .large)
 			.keyboardType(.decimalPad)
 			.textFieldStyle(.roundedBorder)
 			.frame(maxWidth: 110)

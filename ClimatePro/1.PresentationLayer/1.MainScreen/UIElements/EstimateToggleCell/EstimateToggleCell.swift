@@ -35,6 +35,7 @@ struct EstimateToggleCellView: View {
 					viewModel.pricePerUnit,
 					format: .currency(code: viewModel.currency.code)
 				)
+				.dynamicTypeSize(.xSmall ... .xxLarge)
 				.foregroundStyle(.secondary)
 				.frame(maxWidth: .infinity, alignment: .leading)
 			}

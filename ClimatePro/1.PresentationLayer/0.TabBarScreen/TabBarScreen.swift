@@ -19,12 +19,15 @@ struct TabBarScreen: View {
 			TabView {
 				buildMainScreen()
 				buildSettingsScreen()
-			}.tabViewStyle(.sidebarAdaptable)
+			}
+			.tabViewStyle(.sidebarAdaptable)
+			.dynamicTypeSize(.xSmall ... .xxxLarge)
 		} else {
 			TabView {
 				buildMainScreen()
 				buildSettingsScreen()
 			}
+			.dynamicTypeSize(.xSmall ... .xxxLarge)
 		}
 	}
 

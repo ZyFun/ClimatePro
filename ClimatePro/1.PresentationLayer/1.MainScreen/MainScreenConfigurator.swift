@@ -67,8 +67,8 @@ final class MainScreenConfigurator {
 			viewModel: model,
 			lengthCellViewModel: lengthCellViewModel,
 			chaseGrooveAndTonguePlateCellViewModel: chaseGrooveAndTonguePlateCellViewModel,
-			chaseInBrick: chaseInBrick,
-			chaseInConcrete: chaseInConcrete,
+			chaseInBrickViewModel: chaseInBrick,
+			chaseInConcreteViewModel: chaseInConcrete,
 			installationAndStartupViewModel: installationAndStartupViewModel,
 			bracketSelectCellViewModel: bracketSelectCellViewModel,
 			additionalDeparturesCellViewModel: additionalDeparturesCellModel

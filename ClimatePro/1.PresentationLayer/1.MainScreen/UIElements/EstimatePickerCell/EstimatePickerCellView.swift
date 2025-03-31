@@ -25,9 +25,18 @@ struct EstimatePickerCellView: View {
 	private func buildCell() -> some View {
 		DTCell {
 			VStack(alignment: .leading) {
+				Text(text)
 				HStack {
-					Text(text)
+					Text(
+						viewModel.pricePerUnit,
+						format: .currency(code: viewModel.currency.code)
+					)
+					.dynamicTypeSize(.xSmall ... .xxLarge)
+					.foregroundStyle(.secondary)
+					.frame(maxWidth: .infinity, alignment: .leading)
+
 					Spacer()
+
 					Picker("", selection: $viewModel.selectedOption) {
 						ForEach(viewModel.options, id: \.self) { option in
 							Text(option.value)
@@ -46,13 +55,6 @@ struct EstimatePickerCellView: View {
 						}
 					}
 				}
-
-				Text(
-					viewModel.pricePerUnit,
-					format: .currency(code: viewModel.currency.code)
-				)
-				.foregroundStyle(.secondary)
-				.frame(maxWidth: .infinity, alignment: .leading)
 			}
 		}
 	}
