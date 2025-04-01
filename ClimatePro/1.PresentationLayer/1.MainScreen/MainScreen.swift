@@ -55,9 +55,33 @@ struct MainScreen: View {
 			.padding(.horizontal, padding)
 		}
 		.dtFullScreenBackground(.backgroundMain)
+		.toolbar {
+			#if os(iOS)
+			buildKeyboardToolbar()
+			#endif
+		}
 	}
 
 	// MARK: - View Builder Methods
+
+	#if os(iOS)
+	@ToolbarContentBuilder
+	private func buildKeyboardToolbar() -> some ToolbarContent {
+
+		ToolbarItemGroup(placement: .keyboard) {
+			Spacer()
+			Button("Done") {
+				UIApplication.shared.sendAction(
+					#selector(UIResponder.resignFirstResponder),
+					to: nil,
+					from: nil,
+					for: nil
+				)
+			}
+		}
+
+	}
+	#endif
 
 	private func buildLineLengthCell() -> some View {
 		EstimateCellView(
