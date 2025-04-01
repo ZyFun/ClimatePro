@@ -10,6 +10,10 @@ protocol ICalculateService: Sendable {
 	/// - Parameter price: цена за линию
 	func setLengthPrice(_ price: Double) async
 
+	/// Метод для установки цены за корб ДКС
+	/// - Parameter price: цена короба
+	func setDKCCableTrunkingPrice(_ price: Double) async
+
 	/// Метод для установки цены за штробу пазогребневой плиты
 	/// - Parameter price: цена за штробу
 	func setChaseGrooveAndTonguePlatePrice(_ price: Double) async
@@ -41,6 +45,7 @@ protocol ICalculateService: Sendable {
 
 actor CalculateService: ICalculateService {
 	private var lengthPrice: Double = 0
+	private var dkcCableTrunkingPrice: Double = 0
 	private var chaseGrooveAndTonguePlatePrice: Double = 0
 	private var chaseInBrickPrice: Double = 0
 	private var chaseInConcrete: Double = 0
@@ -50,6 +55,10 @@ actor CalculateService: ICalculateService {
 
 	func setLengthPrice(_ price: Double) async {
 		self.lengthPrice = price
+	}
+
+	func setDKCCableTrunkingPrice(_ price: Double) async {
+		self.dkcCableTrunkingPrice = price
 	}
 
 	func setChaseGrooveAndTonguePlatePrice(_ price: Double) async {
@@ -78,6 +87,7 @@ actor CalculateService: ICalculateService {
 
 	func calculateTotalPrice() async -> Double {
 		lengthPrice
+		+ dkcCableTrunkingPrice
 		+ chaseGrooveAndTonguePlatePrice
 		+ chaseInBrickPrice
 		+ chaseInConcrete

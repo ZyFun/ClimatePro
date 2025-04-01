@@ -12,6 +12,7 @@ struct MainScreen: View {
 
 	@State var viewModel: MainScreenViewModel
 	@State var lengthCellViewModel: EstimateCellViewModel
+	@State var dkcCableTrunkingCellViewModel: EstimateCellViewModel
 	@State var chaseGrooveAndTonguePlateCellViewModel: EstimateCellViewModel
 	@State var chaseInBrickViewModel: EstimateCellViewModel
 	@State var chaseInConcreteViewModel: EstimateCellViewModel
@@ -29,6 +30,7 @@ struct MainScreen: View {
 				content: {
 					VStack(alignment: .leading, spacing: padding) {
 						buildLineLengthCell()
+						buildDKCCableTrunkingCell()
 						buildChaseGrooveAndTonguePlateCell()
 						buildChaseInBrickCell()
 						buildChaseInConcreteCell()
@@ -52,6 +54,7 @@ struct MainScreen: View {
 			}
 			.padding(.horizontal, padding)
 		}
+		.dtFullScreenBackground(.backgroundMain)
 	}
 
 	// MARK: - View Builder Methods
@@ -60,6 +63,16 @@ struct MainScreen: View {
 		EstimateCellView(
 			viewModel: lengthCellViewModel,
 			title: "Length of the refrigerant line",
+			placeholder: "distance",
+			unit: .meters,
+			pricePer: "per 1 m"
+		)
+	}
+
+	private func buildDKCCableTrunkingCell() -> some View {
+		EstimateCellView(
+			viewModel: dkcCableTrunkingCellViewModel,
+			title: "DKC cable trunking",
 			placeholder: "distance",
 			unit: .meters,
 			pricePer: "per 1 m"

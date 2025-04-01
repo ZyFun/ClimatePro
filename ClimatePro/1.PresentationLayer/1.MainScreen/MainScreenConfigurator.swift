@@ -29,6 +29,11 @@ final class MainScreenConfigurator {
 			pricePerUnit: 1450, // TODO: () Вынести цену в хранилище coreData
 			cellType: .lengthLine
 		)
+		let dkcCableTrunkingCellViewModel = EstimateCellViewModel(
+			calculateService: calculateService,
+			pricePerUnit: 850, // TODO: () Вынести цену в хранилище coreData
+			cellType: .dkcCableTrunking
+		)
 		let chaseGrooveAndTonguePlateCellViewModel = EstimateCellViewModel(
 			calculateService: calculateService,
 			pricePerUnit: 950, // TODO: () Вынести цену в хранилище coreData
@@ -66,6 +71,7 @@ final class MainScreenConfigurator {
 		let view = MainScreen(
 			viewModel: model,
 			lengthCellViewModel: lengthCellViewModel,
+			dkcCableTrunkingCellViewModel: dkcCableTrunkingCellViewModel,
 			chaseGrooveAndTonguePlateCellViewModel: chaseGrooveAndTonguePlateCellViewModel,
 			chaseInBrickViewModel: chaseInBrick,
 			chaseInConcreteViewModel: chaseInConcrete,

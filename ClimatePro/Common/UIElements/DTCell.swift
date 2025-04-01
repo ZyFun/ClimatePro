@@ -14,9 +14,9 @@ struct DTCell<Content: View>: View {
 			content()
 				.frame(maxWidth: .infinity)
 				.padding()
-				.background()
+				.background(.backgroundMainElement)
 				.clipShape(RoundedRectangle(cornerRadius: 10))
-				.shadow(color: .black.opacity(0.2), radius: 10)
+				.shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 0)
 		}
 	}
 }

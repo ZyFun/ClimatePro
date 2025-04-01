@@ -87,6 +87,16 @@
         }
       }
     },
+    "DKC cable trunking" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Короб ДКС"
+          }
+        }
+      }
+    },
     "Estimate" : {
       "localizations" : {
         "ru" : {
@@ -208,7 +218,7 @@
       }
     },
     "Экран на стадии разработки" : {
-
+      "shouldTranslate" : false
     }
   },
   "version" : "1.0"

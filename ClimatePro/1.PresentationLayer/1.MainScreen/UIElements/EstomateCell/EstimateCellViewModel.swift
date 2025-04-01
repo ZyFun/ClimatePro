@@ -50,11 +50,12 @@ final class EstimateCellViewModel {
 	}
 
 	func calculatePrice() async {
-		guard let enteredDataValue = Double(enteredData) else { return }
+		let enteredDataValue = Double(enteredData) ?? 0
 		price = enteredDataValue * pricePerUnit
 
 		switch calculateCellType {
 		case .lengthLine: await calculateService.setLengthPrice(price)
+		case .dkcCableTrunking: await calculateService.setDKCCableTrunkingPrice(price)
 		case .chaseGrooveAndTonguePlate: await calculateService.setChaseGrooveAndTonguePlatePrice(price)
 		case .chaseInBrick: await calculateService.setChaseInBrickPrice(price)
 		case .chaseInConcrete: await calculateService.setChaseInConcrete(price)
@@ -80,6 +81,7 @@ final class EstimateCellViewModel {
 extension EstimateCellViewModel {
 	enum CalculateCellType {
 		case lengthLine
+		case dkcCableTrunking
 		case chaseGrooveAndTonguePlate
 		case chaseInBrick
 		case chaseInConcrete
