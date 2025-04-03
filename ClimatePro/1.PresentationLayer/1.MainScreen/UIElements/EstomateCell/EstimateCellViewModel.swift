@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Observation
+import RegexBuilder
 
 @Observable @MainActor
 final class EstimateCellViewModel {
@@ -54,12 +55,21 @@ final class EstimateCellViewModel {
 		price = enteredDataValue * pricePerUnit
 
 		switch calculateCellType {
-		case .lengthLine: await calculateService.setLengthPrice(price)
-		case .dkcCableTrunking: await calculateService.setDKCCableTrunkingPrice(price)
-		case .chaseGrooveAndTonguePlate: await calculateService.setChaseGrooveAndTonguePlatePrice(price)
-		case .chaseInBrick: await calculateService.setChaseInBrickPrice(price)
-		case .chaseInConcrete: await calculateService.setChaseInConcrete(price)
-		case .additionalDepartures: await calculateService.setAdditionalDeparturesPrice(price)
+		case .lengthLine:
+			await calculateService.setLengthPrice(price)
+		case .dkcCableTrunking:
+			if price != 0 {
+				price += 1000 // TODO: () Вынести цену в настройку как доп элементы к коробу.
+			}
+			await calculateService.setDKCCableTrunkingPrice(price)
+		case .chaseGrooveAndTonguePlate:
+			await calculateService.setChaseGrooveAndTonguePlatePrice(price)
+		case .chaseInBrick:
+			await calculateService.setChaseInBrickPrice(price)
+		case .chaseInConcrete:
+			await calculateService.setChaseInConcrete(price)
+		case .additionalDepartures:
+			await calculateService.setAdditionalDeparturesPrice(price)
 		}
 	}
 
@@ -67,8 +77,19 @@ final class EstimateCellViewModel {
 	/// - меняет запятую на точку
 	func validateInput(_ text: String) -> String {
 		let normalizedText = text.replacingOccurrences(of: ",", with: ".")
-		let regex = "^[0-9]{1,6}([.][0-9]{0,2})?$"
-		if normalizedText.range(of: regex, options: .regularExpression) != nil {
+
+		let firstDigits = Repeat(1...6) { CharacterClass(.digit) }
+		let fractionDigits = Repeat(0...2) { CharacterClass(.digit) }
+		let decimalPart = Optionally { "."; fractionDigits }
+
+		let regex = Regex {
+			Anchor.startOfLine
+			firstDigits
+			decimalPart
+			Anchor.endOfLine
+		}
+
+		if normalizedText.firstMatch(of: regex) != nil {
 			return normalizedText
 		} else {
 			return String(text.dropLast())
